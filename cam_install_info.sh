@@ -87,31 +87,35 @@ sudo pastebinit /etc/init.d/webcamd4 >> ~/chris_fix
 else
 echo "No init WEBCAMD4" >> ~/chris_fix 
 fi
+
 echo "Web logs" >> ~/chris_fix 
 if [ -e /var/log/webcamd.log ];
 then
-sudo pastebinit /var/log/webcamd.log >> ~/chris_fix
+sudo tail -500 /var/log/webcamd.log | pastebinit  >> ~/chris_fix
 else
 echo "No Weblog" >> ~/chris_fix 
 fi
+
 if [ -e /var/log/webcamd2.log ];
 then
-sudo pastebinit /var/log/webcamd2.log >> ~/chris_fix
+sudo tail -500 /var/log/webcamd2.log | pastebinit >> ~/chris_fix
 else
 echo "No Weblog2" >> ~/chris_fix 
 fi
 if [ -e /var/log/webcamd3.log ];
 then
-sudo pastebinit /var/log/webcamd3.log >> ~/chris_fix
+sudo tail -500 /var/log/webcamd3.log | pastebinit >> ~/chris_fix
 else
 echo "No Weblog3" >> ~/chris_fix 
 fi
+
 if [ -e /var/log/webcamd4.log ];
 then
-sudo pastebinit /var/log/webcamd4.log >> ~/chris_fix
+sudo tail -500 /var/log/webcamd4.log | pastebinit >> ~/chris_fix
 else
 echo "No Weblog4" >> ~/chris_fix 
 fi
+
 echo "Proxy files" >> ~/chris_fix 
 if [ -e /etc/haproxy/haproxy.cfg ];
 then
@@ -119,7 +123,9 @@ sudo pastebinit /etc/haproxy/haproxy.cfg >> ~/chris_fix
 else
 echo "No haproxy" >> ~/chris_fix 
 fi
+
 echo "Messages" >> ~/chris_fix
 sudo tail -500 /var/log/messages | pastebinit >> ~/chris_fix
+
 echo "All done! Send this link to Chris." 
 sudo pastebinit ~/chris_fix 
